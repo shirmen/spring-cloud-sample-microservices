@@ -11,10 +11,10 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-public class DemoController {
+public class SentenceController {
 
     @Autowired
-    private DiscoveryClient discoveryClient;
+    private RestTemplate restTemplate;
 
     @GetMapping("/sentence")
     public String getSentence() {
@@ -27,17 +27,6 @@ public class DemoController {
     }
 
     public String getWord(String service) {
-
-        List<ServiceInstance> list = discoveryClient.getInstances(service);
-
-        if (list != null && list.size() > 0) {
-            URI uri = list.get(0).getUri();
-
-            if (uri != null) {
-                return (new RestTemplate()).getForObject(uri, String.class);
-            }
-        }
-
-        return null;
+        return restTemplate.getForObject("http://" + service, String.class);
     }
 }
