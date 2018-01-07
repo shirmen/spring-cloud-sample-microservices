@@ -11,13 +11,13 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient
 public class Lab5SentenceServerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Lab5SentenceServerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Lab5SentenceServerApplication.class, args);
+    }
 
-	@Bean
-	@LoadBalanced
-	RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
+    @Bean
+    @LoadBalanced
+    RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 }
